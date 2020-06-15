@@ -1,0 +1,34 @@
+hostname ceos1
+!
+username arista privilege 15 secret 0 arista
+!
+ip access-list GNMI
+   10 permit tcp any any eq gnmi
+!   
+management api gnmi
+   transport grpc def
+      ip access-group GNMI
+   provider eos-native
+!
+interface ethernet 2
+   no shutdown
+   no switchport 
+   description  "docker network net1 **** ceos2 ethernet2"
+   ip address 10.0.0.0/31
+!
+interface ethernet 3
+   no shutdown
+   no switchport
+   description "docker network net3 **** ceos3 ethernet3"
+   ip address 10.0.0.5/31
+!
+interface loopback 0
+   ip address 1.1.1.1/32
+!
+ip routing
+!
+router bgp 65001
+   router-id 1.1.1.1
+   neighbor 10.0.0.1 remote-as 65002
+   neighbor 10.0.0.4 remote-as 65003
+   redistribute connected
