@@ -1,3 +1,7 @@
+![GitHub](https://img.shields.io/github/license/ksator/ceos_lab_demo)    
+
+3 ceos-lab containers connected in a triangle topology configured with these [EBGP configuration files](startup-config/ebgp).  
+
 Download a cEOS image (cEOS-lab-4.23.3M.tar.xz) from www.arista.com  
 
 Create a docker image: 
@@ -8,7 +12,7 @@ docker import cEOS-lab-4.23.3M.tar.xz ceosimage:4.23.3M
 docker images | grep ceosimage
 ceosimage                       4.23.3M             6cb51b23a934        2 days ago          1.74GB
 ```
-Create the lab (3 ceos-lab containers connected in a triangle topology configured with these [EBGP configuration files](startup-config/ebgp): 
+Create the lab: 
 ```
 make up  
 ======================
